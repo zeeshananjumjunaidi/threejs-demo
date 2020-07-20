@@ -18,7 +18,7 @@ const sketch = ({ context }) => {
   const renderer = new THREE.WebGLRenderer({
     canvas: context.canvas
   });
-
+  
   // WebGL background color
   renderer.setClearColor("#000", 1);
 
@@ -70,16 +70,7 @@ const sketch = ({ context }) => {
   scene.add(sunMesh);
   // const sunHandler = new THREE.DirectionalLightHelper(sunLight);
   // scene.add(sunHandler);
-  const trailGeom = new THREE.PlaneBufferGeometry(0.05,20,20,200);
-
-  const trailMtl = new THREE.LineBasicMaterial({
-    side:THREE.DoubleSide,
-    color:"green"
-  });
-  const trailMesh = new THREE.Mesh(trailGeom, trailMtl);
-  scene.add(trailMesh);
-
-
+ 
   // draw each frame
   return {
     // Handle resize events here
