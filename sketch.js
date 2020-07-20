@@ -1,4 +1,3 @@
-
 require("./core/setup");
 require("./core/helper");
 require("./core/textures");
@@ -42,7 +41,7 @@ const sketch = ({ context }) => {
    const earthMesh = new THREE.Mesh(sphereGeometry, global.materials.earthMaterial);
   //  scene.add(earthMesh);
    // Setup Earth Atmosphere
-   const earthAtmosphereMesh = new THREE.Mesh(sphereGeometry, global.materials.customMaterial);
+   const earthAtmosphereMesh = new THREE.Mesh(sphereGeometry, global.materials.earthAtmosphere);
    earthAtmosphereMesh.scale.set(1.02,1.02,1.02);
   //  scene.add(earthAtmosphereMesh);
    const earth = new THREE.Group();
@@ -71,11 +70,15 @@ const sketch = ({ context }) => {
   scene.add(sunMesh);
   // const sunHandler = new THREE.DirectionalLightHelper(sunLight);
   // scene.add(sunHandler);
+  const trailGeom = new THREE.PlaneBufferGeometry(0.05,20,20,200);
 
+  const trailMtl = new THREE.LineBasicMaterial({
+    side:THREE.DoubleSide,
+    color:"green"
+  });
+  const trailMesh = new THREE.Mesh(trailGeom, trailMtl);
+  scene.add(trailMesh);
 
-  // const spaceMesh = new THREE.Mesh(sphereGeometry,global.materials.space);
-  // spaceMesh.scale.set(50,50,50);
-  // scene.add(spaceMesh);
 
   // draw each frame
   return {
