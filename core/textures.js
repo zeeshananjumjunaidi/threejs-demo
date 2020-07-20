@@ -17,3 +17,4 @@ global.moonTexture = {
 }
 
 global.spaceTexture = textureLoader.load("textures/stars.jpg");
+global.sunTexture = textureLoader.load("textures/sun.png");

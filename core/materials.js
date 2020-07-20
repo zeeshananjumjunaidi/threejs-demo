@@ -1,5 +1,6 @@
 require("./helper");
 require("./textures");
+require("./custom_shader");
 
 global.materials = {
 
@@ -27,6 +28,19 @@ global.materials = {
       space: new THREE.MeshBasicMaterial({
           map:global.spaceTexture,
           side:THREE.DoubleSide
+      }),
+      sunMaterial: new THREE.MeshLambertMaterial({
+        map:global.sunTexture,
+        transparent:true,
+        alphaMap:global.sunTexture,
+        emissiveMap:global.sunTexture,
+        emissiveIntensity:60,
+        emissive:"orange"
+      }),
+      customMaterial : new THREE.ShaderMaterial({
+        vertexShader:global.shader.vertex,
+        fragmentShader:global.shader.fragment,
+        uniforms:{colorA:{type:'vec3',value:new THREE.Color(0xACB6E5)},colorB:{type:'vec3',value:new THREE.Color(0x74ebd5)}}
       })
     
 }
