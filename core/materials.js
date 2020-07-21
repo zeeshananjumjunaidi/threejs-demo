@@ -40,7 +40,11 @@ global.materials = {
       customMaterial : new THREE.ShaderMaterial({
         vertexShader:global.shader.vertex,
         fragmentShader:global.shader.fragment,
-        uniforms:{colorA:{type:'vec3',value:new THREE.Color(0xACB6E5)},colorB:{type:'vec3',value:new THREE.Color(0x74ebd5)}}
+        uniforms:{colorA:{type:'vec3',value:new THREE.Color(0xACB6E5)},
+        colorB:{type:'vec3',value:new THREE.Color(0x74ebd5)},
+        u_resolution:{type:'vec2',value:new THREE.Vector2(100,100)},
+        u_mouse:{type:'vec2',value:new THREE.Vector2(5,12)},
+        u_time:{type:'float',value:0}}
       })
     
 }

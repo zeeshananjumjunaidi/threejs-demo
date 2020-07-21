@@ -38,7 +38,7 @@ const sketch = ({ context }) => {
 
 
    // Setup a mesh with geometry + material
-   const earthMesh = new THREE.Mesh(sphereGeometry, global.materials.earthMaterial);
+   const earthMesh = new THREE.Mesh(sphereGeometry, global.materials.customMaterial);
   //  scene.add(earthMesh);
    // Setup Earth Atmosphere
    const earthAtmosphereMesh = new THREE.Mesh(sphereGeometry, global.materials.earthAtmosphere);
@@ -46,8 +46,8 @@ const sketch = ({ context }) => {
   //  scene.add(earthAtmosphereMesh);
    const earth = new THREE.Group();
    earth.add(earthMesh);
-   earth.add(earthAtmosphereMesh);
-  scene.add(earth);
+   //earth.add(earthAtmosphereMesh);
+    scene.add(earth);
 
   const moonMesh = new THREE.Mesh(sphereGeometry,global.materials.moonMaterial);
 
@@ -82,10 +82,11 @@ const sketch = ({ context }) => {
     },
     // Update & render your scene here
     render({ time }) {
+      global.materials.customMaterial.uniforms.u_time.value = time;
       sunMesh.lookAt(camera.position);
-      var animationSpeed=2;
+      var animationSpeed=0;
       var earthSpinSpeed =animationSpeed* time * 0.1;
-      earthAtmosphereMesh.rotation.set(0,earthSpinSpeed*1.2,0);
+      //earthAtmosphereMesh.rotation.set(0,earthSpinSpeed*1.2,0);
       earth.rotation.set(0,earthSpinSpeed,0);
       moonMesh.rotation.set(0,earthSpinSpeed*-0.3,0);
       moon.rotation.set(0,earthSpinSpeed*-0.3,0);
