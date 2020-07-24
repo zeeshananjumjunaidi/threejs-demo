@@ -1,6 +1,7 @@
 require("./helper");
 require("./textures");
 require("./custom_shader");
+require("./sun-shader");
 
 global.materials = {
 
@@ -16,8 +17,8 @@ global.materials = {
       earthAtmosphere : new THREE.MeshStandardMaterial({
         map:global.earthTexture.clouds,
         transparent:true,
-        opacity:0.31,
-        color:"black",
+        opacity:0.7,
+        color:"gray",
         alphaMap:earthTexture.cloudAlpha
       }),
 
@@ -29,22 +30,27 @@ global.materials = {
           map:global.spaceTexture,
           side:THREE.DoubleSide
       }),
-      sunMaterial: new THREE.MeshLambertMaterial({
-        map:global.sunTexture,
-        transparent:true,
-        alphaMap:global.sunTexture,
-        emissiveMap:global.sunTexture,
-        emissiveIntensity:60,
-        emissive:"orange"
+      sunMaterial:  new THREE.ShaderMaterial({
+        vertexShader:global.shaders.sun.vertext,
+        fragmentShader:global.shaders.sun.fragment,
+        uniforms:{
+          time:{value:0},
+          color:{value:new THREE.Color('#ff0')},  
+          color2:{value:new THREE.Color('#fc0')}  
+        },extensions:{
+          derivatives:true
+        }
       }),
       customMaterial : new THREE.ShaderMaterial({
-        vertexShader:global.shader.vertex,
-        fragmentShader:global.shader.fragment,
-        uniforms:{colorA:{type:'vec3',value:new THREE.Color(0xACB6E5)},
-        colorB:{type:'vec3',value:new THREE.Color(0x74ebd5)},
-        u_resolution:{type:'vec2',value:new THREE.Vector2(100,100)},
-        u_mouse:{type:'vec2',value:new THREE.Vector2(5,12)},
-        u_time:{type:'float',value:0}}
+        vertexShader:global.shaders.sun.vertext,
+        fragmentShader:global.shaders.sun.fragment,
+        uniforms:{
+          time:{value:0},
+          color:{value:new THREE.Color('#ff0')},  
+          color2:{value:new THREE.Color('#f50')}  
+        },extensions:{
+          derivatives:true
+        }
       })
     
 }
